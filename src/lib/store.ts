@@ -18,6 +18,8 @@ interface AuthState {
   login: (email: string, password: string) => Promise<{ success: boolean; error?: string }>;
   signup: (name: string, email: string, password: string) => Promise<{ success: boolean; error?: string }>;
   logout: () => void;
+  resetPassword: (email: string) => Promise<{ success: boolean; error?: string }>;
+  updatePassword: (newPassword: string) => Promise<{ success: boolean; error?: string }>;
 }
 
 interface ConversationState {
@@ -147,6 +149,42 @@ export const useAuthStore = create<AuthState>()(
           localStorage.removeItem('conversation-storage');
           localStorage.removeItem('document-storage');
           // Keep theme-storage - user preference should persist
+        }
+      },
+      resetPassword: async (email: string) => {
+        try {
+          const supabase = createClient();
+          const { error } = await supabase.auth.resetPasswordForEmail(email, {
+            redirectTo: `${window.location.origin}/reset-password`,
+          });
+
+          if (error) {
+            console.error('Password reset error:', error.message);
+            return { success: false, error: error.message };
+          }
+
+          return { success: true };
+        } catch (error: any) {
+          console.error('Password reset error:', error);
+          return { success: false, error: error.message || 'Password reset failed' };
+        }
+      },
+      updatePassword: async (newPassword: string) => {
+        try {
+          const supabase = createClient();
+          const { error } = await supabase.auth.updateUser({
+            password: newPassword,
+          });
+
+          if (error) {
+            console.error('Password update error:', error.message);
+            return { success: false, error: error.message };
+          }
+
+          return { success: true };
+        } catch (error: any) {
+          console.error('Password update error:', error);
+          return { success: false, error: error.message || 'Password update failed' };
         }
       },
     }),
