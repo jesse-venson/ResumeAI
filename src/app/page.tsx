@@ -146,22 +146,22 @@ export default function LandingPage() {
                 </a>
               </nav>
 
-              <div className="flex items-center gap-6">
+              <div className="flex items-center gap-3 sm:gap-6">
                 <Button
                   variant="ghost"
                   size="icon"
                   onClick={toggleTheme}
-                  className="rounded-full text-white/25 hover:text-white/60 hover:bg-white/5 transition-all duration-300"
+                  className="hidden sm:flex rounded-full text-white/25 hover:text-white/60 hover:bg-white/5 transition-all duration-300"
                 >
                   {theme === 'light' ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
                 </Button>
-                <Link href="/login">
-                  <span className="text-[11px] text-white/25 hover:text-white/60 transition-colors duration-300 tracking-[0.15em] uppercase cursor-pointer">
+                <Link href="/login" className="hidden sm:block">
+                  <span className="text-[11px] text-white/25 hover:text-white/60 transition-colors duration-300 tracking-[0.15em] uppercase cursor-pointer whitespace-nowrap">
                     Sign in
                   </span>
                 </Link>
                 <Link href="/signup">
-                  <Button className="text-[11px] tracking-[0.15em] uppercase rounded-full px-6 h-9 bg-white/10 text-white/70 border border-white/10 hover:bg-white/15 hover:text-white/90 hover:border-white/20 transition-all duration-300">
+                  <Button className="text-[10px] sm:text-[11px] tracking-[0.15em] uppercase rounded-full px-4 sm:px-6 h-8 sm:h-9 bg-white/10 text-white/70 border border-white/10 hover:bg-white/15 hover:text-white/90 hover:border-white/20 transition-all duration-300 whitespace-nowrap">
                     Get Started
                   </Button>
                 </Link>
