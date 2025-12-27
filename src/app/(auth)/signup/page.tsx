@@ -47,22 +47,22 @@ export default function SignupPage() {
   };
 
   return (
-    <Card className="w-full max-w-md fade-in">
+    <Card className="w-full max-w-md fade-in bg-white/[0.03] border-white/[0.08] backdrop-blur-sm">
       <CardHeader className="space-y-4">
         <div className="flex justify-center">
-          <div className="w-12 h-12 bg-gradient-to-br from-purple-600 to-pink-500 rounded-xl flex items-center justify-center">
-            <Sparkles className="w-7 h-7 text-white" />
+          <div className="w-12 h-12 bg-blue-500/10 border border-blue-500/20 rounded-xl flex items-center justify-center">
+            <Sparkles className="w-6 h-6 text-blue-400/80" />
           </div>
         </div>
-        <CardTitle className="text-2xl text-center">Create your account</CardTitle>
-        <CardDescription className="text-center">
+        <CardTitle className="text-2xl text-center text-white/90">Create your account</CardTitle>
+        <CardDescription className="text-center text-white/40">
           Start creating professional documents with AI
         </CardDescription>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="name">Full Name</Label>
+            <Label htmlFor="name" className="text-white/60">Full Name</Label>
             <Input
               id="name"
               type="text"
@@ -70,10 +70,11 @@ export default function SignupPage() {
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
+              className="bg-white/[0.03] border-white/[0.08] text-white placeholder:text-white/25 focus:border-blue-500/50 focus:ring-blue-500/20"
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="email">Email</Label>
+            <Label htmlFor="email" className="text-white/60">Email</Label>
             <Input
               id="email"
               type="email"
@@ -81,10 +82,11 @@ export default function SignupPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
+              className="bg-white/[0.03] border-white/[0.08] text-white placeholder:text-white/25 focus:border-blue-500/50 focus:ring-blue-500/20"
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="password">Password</Label>
+            <Label htmlFor="password" className="text-white/60">Password</Label>
             <Input
               id="password"
               type="password"
@@ -92,25 +94,26 @@ export default function SignupPage() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
+              className="bg-white/[0.03] border-white/[0.08] text-white placeholder:text-white/25 focus:border-blue-500/50 focus:ring-blue-500/20"
             />
-            <p className="text-xs text-muted-foreground">
+            <p className="text-xs text-white/30">
               Must be at least 6 characters
             </p>
           </div>
           {error && (
-            <div className="text-sm text-red-500 text-center">{error}</div>
+            <div className="text-sm text-red-400 text-center">{error}</div>
           )}
           <Button
             type="submit"
-            className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700"
+            className="w-full bg-blue-500/20 hover:bg-blue-500/30 text-blue-100 border border-blue-500/30 hover:border-blue-500/50 transition-all duration-300"
             disabled={loading}
           >
             {loading ? 'Creating account...' : 'Sign up'}
           </Button>
         </form>
         <div className="mt-6 text-center text-sm">
-          <span className="text-muted-foreground">Already have an account? </span>
-          <Link href="/login" className="text-purple-600 hover:text-purple-700 font-medium">
+          <span className="text-white/40">Already have an account? </span>
+          <Link href="/login" className="text-blue-400/70 hover:text-blue-400 font-medium transition-colors">
             Log in
           </Link>
         </div>

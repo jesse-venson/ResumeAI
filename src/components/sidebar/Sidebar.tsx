@@ -22,7 +22,7 @@ import { cn } from '@/lib/utils';
 
 export function Sidebar() {
   const router = useRouter();
-  const { conversations, currentConversationId, setCurrentConversation, addConversation, deleteConversation } =
+  const { conversations, currentConversationId, setCurrentConversation, deleteConversation } =
     useConversationStore();
   const { documents, deleteDocument } = useDocumentStore();
   const { user, logout } = useAuthStore();
@@ -97,22 +97,22 @@ export function Sidebar() {
   }, {} as Record<string, typeof documents>);
 
   return (
-    <div className="w-64 h-screen bg-white/50 dark:bg-gray-950/50 backdrop-blur-xl border-r border-gray-200/50 dark:border-gray-800/50 flex flex-col relative overflow-hidden z-10">
+    <div className="w-64 h-screen bg-white/[0.02] backdrop-blur-xl border-r border-white/[0.06] flex flex-col relative overflow-hidden z-10">
       {/* Header */}
       <div className="p-3 space-y-3 flex-shrink-0">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="w-7 h-7 bg-gradient-to-br from-purple-600 to-pink-500 rounded-lg flex items-center justify-center">
-              <Sparkles className="w-4 h-4 text-white" />
+            <div className="w-7 h-7 bg-blue-500/10 border border-blue-500/20 rounded-lg flex items-center justify-center">
+              <Sparkles className="w-4 h-4 text-blue-400/80" />
             </div>
-            <span className="text-sm font-semibold gradient-text">ResumeAI</span>
+            <span className="text-sm font-semibold text-white/80">ResumeAI</span>
           </div>
-          <Button variant="ghost" size="icon" onClick={toggleTheme} className="h-7 w-7">
+          <Button variant="ghost" size="icon" onClick={toggleTheme} className="h-7 w-7 text-white/40 hover:text-white/70 hover:bg-white/[0.05]">
             {theme === 'light' ? <Moon className="w-3.5 h-3.5" /> : <Sun className="w-3.5 h-3.5" />}
           </Button>
         </div>
         <Button
-          className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 h-8 text-xs"
+          className="w-full bg-blue-500/20 hover:bg-blue-500/30 text-blue-100 border border-blue-500/30 hover:border-blue-500/50 h-8 text-xs transition-all duration-300"
           onClick={handleNewConversation}
         >
           <Plus className="w-3.5 h-3.5 mr-1.5" />
@@ -122,12 +122,12 @@ export function Sidebar() {
 
       {/* Tabs - takes remaining space */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="flex-1 flex flex-col min-h-0">
-        <TabsList className="mx-3 grid w-auto grid-cols-2 h-8">
-          <TabsTrigger value="conversations" className="text-xs py-1">
+        <TabsList className="mx-3 grid w-auto grid-cols-2 h-8 bg-white/[0.03] border border-white/[0.06]">
+          <TabsTrigger value="conversations" className="text-xs py-1 text-white/50 data-[state=active]:text-white/90 data-[state=active]:bg-white/[0.05]">
             <MessageSquare className="w-3.5 h-3.5 mr-1.5" />
             Chats
           </TabsTrigger>
-          <TabsTrigger value="documents" className="text-xs py-1">
+          <TabsTrigger value="documents" className="text-xs py-1 text-white/50 data-[state=active]:text-white/90 data-[state=active]:bg-white/[0.05]">
             <FileText className="w-3.5 h-3.5 mr-1.5" />
             Docs
           </TabsTrigger>
@@ -138,7 +138,7 @@ export function Sidebar() {
           <ScrollArea className="h-[calc(100vh-240px)] scrollbar-thin">
             <div className="p-3 space-y-3 pb-20">
               {sortedConversations.length === 0 ? (
-                <div className="text-center text-xs text-muted-foreground py-8">
+                <div className="text-center text-xs text-white/30 py-8">
                   No conversations yet
                 </div>
               ) : (
@@ -148,7 +148,7 @@ export function Sidebar() {
 
                   return (
                     <div key={groupName} className="space-y-0.5">
-                      <div className="text-[10px] font-medium text-muted-foreground px-2 uppercase tracking-wide">
+                      <div className="text-[10px] font-medium text-white/30 px-2 uppercase tracking-wide">
                         {groupName}
                       </div>
                       {convs.map((conv) => (
@@ -159,16 +159,16 @@ export function Sidebar() {
                           <button
                             onClick={() => setCurrentConversation(conv.id)}
                             className={cn(
-                              'w-full text-left px-2.5 py-1.5 rounded-md text-xs hover:bg-purple-50/50 dark:hover:bg-purple-950/30 transition-all duration-200 cursor-pointer',
+                              'w-full text-left px-2.5 py-1.5 rounded-md text-xs hover:bg-white/[0.04] transition-all duration-200 cursor-pointer text-white/70',
                               currentConversationId === conv.id &&
-                                'bg-purple-100/60 dark:bg-purple-900/40 shadow-sm'
+                                'bg-blue-500/10 border border-blue-500/20 text-white/90'
                             )}
                           >
                             <div className="flex items-center justify-between gap-2 pr-7">
                               <div className="font-medium truncate leading-tight flex-1">
                                 {conv.serviceType === 'cover-letter' ? 'Cover Letter' : conv.serviceType === 'sop' ? 'SOP' : 'Resume'}
                               </div>
-                              <div className="text-[10px] text-muted-foreground whitespace-nowrap">
+                              <div className="text-[10px] text-white/30 whitespace-nowrap">
                                 {formatTime(conv.createdAt)}
                               </div>
                             </div>
@@ -183,7 +183,7 @@ export function Sidebar() {
                                 }
                               }
                             }}
-                            className="absolute right-1.5 top-1/2 -translate-y-1/2 h-5 w-5 rounded hover:bg-red-100 dark:hover:bg-red-950/50 text-gray-400 hover:text-red-600 dark:text-gray-600 dark:hover:text-red-400 flex items-center justify-center transition-colors"
+                            className="absolute right-1.5 top-1/2 -translate-y-1/2 h-5 w-5 rounded hover:bg-red-500/20 text-white/20 hover:text-red-400 flex items-center justify-center transition-colors"
                             title="Delete conversation"
                           >
                             <Trash2 className="w-3 h-3" />
@@ -203,13 +203,13 @@ export function Sidebar() {
           <ScrollArea className="h-[calc(100vh-240px)] scrollbar-thin">
             <div className="p-3 space-y-3 pb-20">
               {Object.keys(groupedDocuments).length === 0 ? (
-                <div className="text-center text-xs text-muted-foreground py-8">
+                <div className="text-center text-xs text-white/30 py-8">
                   No documents yet
                 </div>
               ) : (
                 Object.entries(groupedDocuments).map(([type, docs]) => (
                   <div key={type} className="space-y-0.5">
-                    <div className="text-[10px] font-medium text-muted-foreground px-2 capitalize uppercase tracking-wide">
+                    <div className="text-[10px] font-medium text-white/30 px-2 capitalize uppercase tracking-wide">
                       {type.replace('-', ' ')}s ({docs.length})
                     </div>
                     {docs.map((doc) => (
@@ -219,10 +219,10 @@ export function Sidebar() {
                       >
                         <button
                           onClick={() => handleDocumentClick(doc.conversationId)}
-                          className="w-full text-left px-2.5 py-1.5 rounded-md text-xs hover:bg-purple-50/50 dark:hover:bg-purple-950/30 transition-all duration-200 cursor-pointer"
+                          className="w-full text-left px-2.5 py-1.5 rounded-md text-xs hover:bg-white/[0.04] transition-all duration-200 cursor-pointer text-white/70"
                         >
                           <div className="font-medium truncate pr-7 leading-tight">{doc.title}</div>
-                          <div className="text-[10px] text-muted-foreground truncate mt-0.5">
+                          <div className="text-[10px] text-white/30 truncate mt-0.5">
                             {new Date(doc.createdAt).toLocaleDateString()}
                           </div>
                         </button>
@@ -233,7 +233,7 @@ export function Sidebar() {
                               deleteDocument(doc.id);
                             }
                           }}
-                          className="absolute right-1.5 top-1/2 -translate-y-1/2 h-5 w-5 rounded hover:bg-red-100 dark:hover:bg-red-950/50 text-gray-400 hover:text-red-600 dark:text-gray-600 dark:hover:text-red-400 flex items-center justify-center transition-colors"
+                          className="absolute right-1.5 top-1/2 -translate-y-1/2 h-5 w-5 rounded hover:bg-red-500/20 text-white/20 hover:text-red-400 flex items-center justify-center transition-colors"
                           title="Delete document"
                         >
                           <Trash2 className="w-3 h-3" />
@@ -254,18 +254,18 @@ export function Sidebar() {
         <div className="h-12 w-full absolute bottom-0 pointer-events-none" />
 
         {/* Footer content - slides up on hover */}
-        <div className="translate-y-full group-hover:translate-y-0 transition-transform duration-300 bg-white/80 dark:bg-gray-950/80 backdrop-blur-xl border-t border-gray-200/50 dark:border-gray-800/50 shadow-2xl relative z-20">
+        <div className="translate-y-full group-hover:translate-y-0 transition-transform duration-300 bg-[#0c0c12]/95 backdrop-blur-xl border-t border-white/[0.06] shadow-2xl relative z-20">
           <div className="p-3 space-y-1.5">
             <div className="px-2 py-1.5 text-xs">
-              <div className="font-medium truncate">{user?.name}</div>
-              <div className="text-[10px] text-muted-foreground truncate">{user?.email}</div>
+              <div className="font-medium truncate text-white/80">{user?.name}</div>
+              <div className="text-[10px] text-white/40 truncate">{user?.email}</div>
             </div>
-            <Separator className="bg-gray-200/50 dark:bg-gray-800/50" />
+            <Separator className="bg-white/[0.06]" />
             <div className="flex gap-1.5">
               <Button
                 variant="ghost"
                 size="sm"
-                className="flex-1 hover:bg-purple-50/50 dark:hover:bg-purple-950/30 h-7 text-xs"
+                className="flex-1 hover:bg-white/[0.05] text-white/60 hover:text-white/90 h-7 text-xs"
                 onClick={() => router.push('/settings')}
               >
                 <Settings className="w-3 h-3 mr-1.5" />
@@ -275,7 +275,7 @@ export function Sidebar() {
                 variant="ghost"
                 size="sm"
                 onClick={handleLogout}
-                className="hover:bg-red-50/50 dark:hover:bg-red-950/30 h-7 px-2"
+                className="hover:bg-red-500/20 text-white/60 hover:text-red-400 h-7 px-2"
               >
                 <LogOut className="w-3 h-3" />
               </Button>

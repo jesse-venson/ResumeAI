@@ -53,10 +53,10 @@ export default function DashboardLayout({
   // Show loading state during hydration
   if (!hasHydrated) {
     return (
-      <div className="flex h-screen items-center justify-center bg-gradient-to-br from-slate-50 via-purple-50/40 to-pink-50/40 dark:from-gray-950 dark:via-purple-950/20 dark:to-pink-950/20">
+      <div className="flex h-screen items-center justify-center bg-[#0c0c12]">
         <div className="text-center">
-          <div className="w-12 h-12 border-4 border-purple-600 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
-          <p className="text-muted-foreground">Loading...</p>
+          <div className="w-12 h-12 border-2 border-blue-500/30 border-t-blue-500 rounded-full animate-spin mx-auto mb-4" />
+          <p className="text-white/40">Loading...</p>
         </div>
       </div>
     );
@@ -68,7 +68,7 @@ export default function DashboardLayout({
   }
 
   return (
-    <div className="flex h-screen overflow-hidden">
+    <div className="flex h-screen overflow-hidden bg-[#0c0c12]">
       <Sidebar />
       <main className="flex-1 overflow-hidden">{children}</main>
     </div>

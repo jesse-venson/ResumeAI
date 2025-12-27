@@ -96,8 +96,8 @@ export default function LandingPage() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [handleScroll]);
 
-  // Smooth eased navbar fade - starts slow, then accelerates
-  const navOpacity = scrollY < 50 ? 1 : Math.max(0, 1 - Math.pow((scrollY - 50) / 350, 1.5));
+  // Navbar fades quickly as soon as scrolling starts
+  const navOpacity = Math.max(0, 1 - Math.pow(scrollY / 150, 1.2));
 
   return (
     <div className="min-h-screen bg-[#0c0c12] text-white overflow-x-hidden">
@@ -261,11 +261,11 @@ export default function LandingPage() {
         </section>
 
         {/* Tools Section */}
-        <section id="tools" className="relative py-24 lg:py-32">
+        <section id="tools" className="relative py-16 lg:py-20">
           <div className="mx-auto max-w-6xl px-8 lg:px-16">
             {/* Section header */}
             <div
-              className="text-center mb-20"
+              className="text-center mb-12"
               style={{
                 opacity: Math.min(1, Math.max(0, (scrollY - 200) / 300)),
                 transform: `translateY(${Math.max(0, 30 - (scrollY - 200) / 10)}px)`,
@@ -282,7 +282,7 @@ export default function LandingPage() {
               {/* Resume Card */}
               <Link href="/signup">
                 <div
-                  className="group relative p-8 lg:p-10 rounded-2xl bg-white/[0.03] border border-white/[0.08] hover:bg-white/[0.05] hover:border-white/[0.15] transition-all duration-500 cursor-pointer"
+                  className="group relative p-8 lg:p-10 rounded-2xl bg-white/[0.06] border border-white/[0.12] hover:bg-white/[0.08] hover:border-white/[0.18] transition-all duration-500 cursor-pointer"
                   style={{
                     opacity: Math.min(1, Math.max(0, (scrollY - 300) / 250)),
                     transform: `translateY(${Math.max(0, 30 - (scrollY - 300) / 8)}px)`,
@@ -304,7 +304,7 @@ export default function LandingPage() {
               {/* Cover Letter Card */}
               <Link href="/signup">
                 <div
-                  className="group relative p-8 lg:p-10 rounded-2xl bg-white/[0.03] border border-white/[0.08] hover:bg-white/[0.05] hover:border-white/[0.15] transition-all duration-500 cursor-pointer"
+                  className="group relative p-8 lg:p-10 rounded-2xl bg-white/[0.06] border border-white/[0.12] hover:bg-white/[0.08] hover:border-white/[0.18] transition-all duration-500 cursor-pointer"
                   style={{
                     opacity: Math.min(1, Math.max(0, (scrollY - 350) / 250)),
                     transform: `translateY(${Math.max(0, 30 - (scrollY - 350) / 8)}px)`,
@@ -326,7 +326,7 @@ export default function LandingPage() {
               {/* Statement Card */}
               <Link href="/signup">
                 <div
-                  className="group relative p-8 lg:p-10 rounded-2xl bg-white/[0.03] border border-white/[0.08] hover:bg-white/[0.05] hover:border-white/[0.15] transition-all duration-500 cursor-pointer"
+                  className="group relative p-8 lg:p-10 rounded-2xl bg-white/[0.06] border border-white/[0.12] hover:bg-white/[0.08] hover:border-white/[0.18] transition-all duration-500 cursor-pointer"
                   style={{
                     opacity: Math.min(1, Math.max(0, (scrollY - 400) / 250)),
                     transform: `translateY(${Math.max(0, 30 - (scrollY - 400) / 8)}px)`,
@@ -377,14 +377,10 @@ export default function LandingPage() {
               <h2 className="text-3xl lg:text-4xl font-extralight tracking-tight text-white/80 mb-10">
                 Ready<span className="text-blue-400/60">?</span>
               </h2>
-              <Link href="/signup">
-                <Button
-                  size="lg"
-                  className="h-14 px-10 text-[11px] tracking-[0.15em] uppercase rounded-full bg-white/10 text-white/80 border border-white/15 hover:bg-white/15 hover:text-white hover:border-white/25 transition-all duration-500 hover:scale-105"
-                >
-                  Get Started Free
-                  <ArrowRight className="w-4 h-4 ml-3 opacity-50" />
-                </Button>
+              <Link href="/signup" className="group inline-flex items-center justify-center gap-4 text-[11px] tracking-[0.2em] uppercase text-white/40 hover:text-white/70 transition-colors duration-500">
+                <span className="w-8 h-px bg-white/20 group-hover:w-12 group-hover:bg-white/40 transition-all duration-500" />
+                <span>Get Started Free</span>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
               </Link>
             </div>
           </div>

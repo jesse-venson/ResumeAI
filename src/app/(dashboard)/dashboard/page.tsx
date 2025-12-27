@@ -238,7 +238,7 @@ export default function DashboardPage() {
   // Show service selection if no conversation
   if (step === 'service') {
     return (
-      <div className="h-full flex items-center justify-center bg-gradient-to-b from-white via-purple-50/30 to-white dark:from-gray-950 dark:via-purple-950/20 dark:to-gray-950">
+      <div className="h-full flex items-center justify-center bg-[#0c0c12]">
         <ServiceCards onSelectService={handleServiceSelect} />
       </div>
     );
@@ -246,25 +246,25 @@ export default function DashboardPage() {
 
   // Show chat interface with live preview
   return (
-    <div className="h-screen flex overflow-hidden">
+    <div className="h-screen flex overflow-hidden bg-[#0c0c12]">
       {/* Chat Area */}
       <div className="flex-1 flex flex-col h-full">
         {/* Header */}
-        <div className="border-b px-6 py-5 bg-white dark:bg-gray-950 flex-shrink-0 z-10">
+        <div className="border-b border-white/[0.06] px-6 py-5 bg-[#0c0c12] flex-shrink-0 z-10">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="px-3 py-1.5 bg-gradient-to-br from-purple-600 to-pink-500 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xs">ResumeAI</span>
+              <div className="px-3 py-1.5 bg-blue-500/10 border border-blue-500/20 rounded-lg flex items-center justify-center">
+                <span className="text-blue-400/90 font-bold text-xs">ResumeAI</span>
               </div>
               <div>
-                <p className="text-xs text-muted-foreground capitalize">
+                <p className="text-xs text-white/40 capitalize">
                   {selectedService?.replace('-', ' ')}
                 </p>
               </div>
             </div>
             {selectedService === 'resume' && uploadedFile && (
-              <div className="text-xs text-muted-foreground flex items-center gap-2">
-                <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+              <div className="text-xs text-white/40 flex items-center gap-2">
+                <span className="w-2 h-2 bg-emerald-500 rounded-full"></span>
                 Resume uploaded
               </div>
             )}
@@ -325,9 +325,9 @@ export default function DashboardPage() {
         <Button
           onClick={() => setShowPreview(true)}
           size="icon"
-          className="fixed bottom-6 right-6 z-50 w-12 h-12 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 shadow-2xl shadow-purple-500/40 hover:shadow-purple-500/60 hover:scale-110 transition-all duration-300 rounded-full"
+          className="fixed bottom-6 right-6 z-50 w-12 h-12 bg-blue-500/20 hover:bg-blue-500/30 border border-blue-500/30 hover:border-blue-500/50 shadow-2xl shadow-blue-500/20 hover:shadow-blue-500/30 hover:scale-110 transition-all duration-300 rounded-full"
         >
-          <Eye className="w-5 h-5" />
+          <Eye className="w-5 h-5 text-blue-400" />
         </Button>
       )}
 

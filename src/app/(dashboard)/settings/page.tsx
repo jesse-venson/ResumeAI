@@ -20,69 +20,69 @@ export default function SettingsPage() {
   };
 
   return (
-    <div className="h-full overflow-auto bg-gradient-to-b from-white via-purple-50/30 to-white dark:from-gray-950 dark:via-purple-950/20 dark:to-gray-950 relative">
+    <div className="h-full overflow-auto bg-[#0c0c12] relative">
       <div className="max-w-4xl mx-auto p-8 relative z-0">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold mb-2">Settings</h1>
-          <p className="text-muted-foreground">
+          <h1 className="text-3xl font-bold mb-2 text-white/90">Settings</h1>
+          <p className="text-white/40">
             Manage your account settings and preferences
           </p>
         </div>
 
         <div className="space-y-6">
           {/* Profile Settings */}
-          <Card>
+          <Card className="bg-white/[0.03] border-white/[0.08]">
             <CardHeader>
-              <CardTitle>Profile Information</CardTitle>
-              <CardDescription>
+              <CardTitle className="text-white/90">Profile Information</CardTitle>
+              <CardDescription className="text-white/40">
                 Your personal information (stored locally)
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="name">Full Name</Label>
+                <Label htmlFor="name" className="text-white/60">Full Name</Label>
                 <div className="flex items-center gap-2">
-                  <User className="w-4 h-4 text-muted-foreground" />
+                  <User className="w-4 h-4 text-white/30" />
                   <Input
                     id="name"
                     value={user?.name || ''}
                     disabled
-                    className="flex-1"
+                    className="flex-1 bg-white/[0.03] border-white/[0.08] text-white/70"
                   />
                 </div>
               </div>
               <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="email" className="text-white/60">Email</Label>
                 <div className="flex items-center gap-2">
-                  <Mail className="w-4 h-4 text-muted-foreground" />
+                  <Mail className="w-4 h-4 text-white/30" />
                   <Input
                     id="email"
                     type="email"
                     value={user?.email || ''}
                     disabled
-                    className="flex-1"
+                    className="flex-1 bg-white/[0.03] border-white/[0.08] text-white/70"
                   />
                 </div>
               </div>
-              <p className="text-xs text-muted-foreground">
+              <p className="text-xs text-white/30">
                 Profile information is currently read-only. Contact support to make changes.
               </p>
             </CardContent>
           </Card>
 
           {/* Appearance Settings */}
-          <Card>
+          <Card className="bg-white/[0.03] border-white/[0.08]">
             <CardHeader>
-              <CardTitle>Appearance</CardTitle>
-              <CardDescription>
+              <CardTitle className="text-white/90">Appearance</CardTitle>
+              <CardDescription className="text-white/40">
                 Customize how ResumeAI looks on your device
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <div className="font-medium mb-1">Theme</div>
-                  <div className="text-sm text-muted-foreground">
+                  <div className="font-medium mb-1 text-white/80">Theme</div>
+                  <div className="text-sm text-white/40">
                     Switch between light and dark mode
                   </div>
                 </div>
@@ -90,7 +90,7 @@ export default function SettingsPage() {
                   variant="outline"
                   size="icon"
                   onClick={toggleTheme}
-                  className="h-10 w-10"
+                  className="h-10 w-10 bg-white/[0.03] border-white/[0.08] text-white/60 hover:bg-white/[0.06] hover:text-white/90"
                 >
                   {theme === 'light' ? (
                     <Moon className="w-5 h-5" />
@@ -99,28 +99,28 @@ export default function SettingsPage() {
                   )}
                 </Button>
               </div>
-              <p className="text-xs text-muted-foreground">
-                Current theme: <span className="font-medium capitalize">{theme}</span>
+              <p className="text-xs text-white/30">
+                Current theme: <span className="font-medium capitalize text-white/50">{theme}</span>
               </p>
             </CardContent>
           </Card>
 
           {/* Data & Storage */}
-          <Card>
+          <Card className="bg-white/[0.03] border-white/[0.08]">
             <CardHeader>
-              <CardTitle>Data & Storage</CardTitle>
-              <CardDescription>
+              <CardTitle className="text-white/90">Data & Storage</CardTitle>
+              <CardDescription className="text-white/40">
                 Manage your local data and storage
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
-                <div className="font-medium mb-1">Local Storage</div>
-                <p className="text-sm text-muted-foreground mb-3">
+                <div className="font-medium mb-1 text-white/80">Local Storage</div>
+                <p className="text-sm text-white/40 mb-3">
                   All your conversations and documents are stored locally in your browser.
                   Clearing browser data will delete this information.
                 </p>
-                <p className="text-xs text-yellow-600 dark:text-yellow-500">
+                <p className="text-xs text-amber-400/70">
                   ⚠️ Note: Data is only accessible in this browser
                 </p>
               </div>
@@ -128,12 +128,12 @@ export default function SettingsPage() {
           </Card>
 
           {/* Account Actions */}
-          <Card className="border-red-200 dark:border-red-900">
+          <Card className="bg-white/[0.03] border-red-500/20">
             <CardHeader>
-              <CardTitle className="text-red-600 dark:text-red-400">
+              <CardTitle className="text-red-400">
                 Account Actions
               </CardTitle>
-              <CardDescription>
+              <CardDescription className="text-white/40">
                 Manage your account
               </CardDescription>
             </CardHeader>
@@ -141,31 +141,31 @@ export default function SettingsPage() {
               <Button
                 variant="destructive"
                 onClick={handleLogout}
-                className="w-full sm:w-auto"
+                className="w-full sm:w-auto bg-red-500/20 hover:bg-red-500/30 text-red-400 border border-red-500/30 hover:border-red-500/50"
               >
                 Log Out
               </Button>
-              <p className="text-xs text-muted-foreground mt-3">
+              <p className="text-xs text-white/30 mt-3">
                 You'll be redirected to the home page
               </p>
             </CardContent>
           </Card>
 
           {/* About */}
-          <Card>
+          <Card className="bg-white/[0.03] border-white/[0.08]">
             <CardHeader>
-              <CardTitle>About ResumeAI</CardTitle>
+              <CardTitle className="text-white/90">About ResumeAI</CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
               <div className="text-sm space-y-2">
-                <p className="text-muted-foreground">
+                <p className="text-white/40">
                   Version: 1.0.0 (Beta)
                 </p>
-                <p className="text-muted-foreground">
+                <p className="text-white/40">
                   AI-Powered Resume Tailoring Software
                 </p>
-                <Separator className="my-3" />
-                <p className="text-xs text-muted-foreground">
+                <Separator className="my-3 bg-white/[0.06]" />
+                <p className="text-xs text-white/30">
                   Built with Next.js, TypeScript, and Tailwind CSS
                 </p>
               </div>
@@ -178,6 +178,7 @@ export default function SettingsPage() {
           <Button
             variant="outline"
             onClick={() => router.push('/dashboard')}
+            className="bg-white/[0.03] border-white/[0.08] text-white/60 hover:bg-white/[0.06] hover:text-white/90"
           >
             ← Back to Dashboard
           </Button>
